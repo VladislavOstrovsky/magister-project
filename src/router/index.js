@@ -1,21 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Ping from '@/components/Ping'
-import Books from '@/components/Books'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Books',
-    component: Books,
+    path: "/",
+    alias: "/tutorials",
+    name: "tutorials",
+    component: () => import("../components/TutorialsList")
   },
   {
-    path: '/ping',
-    name: 'Ping',
-    component: Ping,
+    path: "/tutorials/:id",
+    name: "tutorial-details",
+    component: () => import("../components/Tutorial")
   },
+  {
+    path: "/add",
+    name: "add",
+    component: () => import("../components/AddTutorial")
+  }
 ]
 
 const router = new VueRouter({
